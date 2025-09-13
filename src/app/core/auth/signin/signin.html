@@ -1,0 +1,60 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
+    <h2 class="text-3xl font-bold text-gray-900 text-center">Inicia sesión</h2>
+    <p class="text-sm text-gray-500 text-center">Bienvenido de nuevo 👋</p>
+
+    <form class="space-y-4" [formGroup]="form" (ngSubmit)="login()">
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Correo</label>
+        <input
+          type="email"
+          placeholder="example@mail.com"
+          formControlName="email"
+          class="w-full mt-1 px-4 py-2 placeholder:text-gray-500 placeholder:opacity-25 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+        />
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input
+          type="password"
+          placeholder="••••••••"
+          formControlName="password"
+          class="w-full mt-1 px-4 py-2 placeholder:text-gray-500 placeholder:opacity-25 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+        />
+      </div>
+
+      <!-- Botón -->
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="w-full py-3 disabled:bg-gray-700 disabled:opacity-25 disabled:cursor-not-allowed bg-indigo-600 text-white font-semibold rounded-xl shadow hover:bg-indigo-700 transition"
+      >
+        Ingresar
+      </button>
+    </form>
+
+    <!-- Separador -->
+    <div class="flex items-center gap-2">
+      <div class="flex-1 h-px bg-gray-300"></div>
+      <span class="text-sm text-gray-400">o</span>
+      <div class="flex-1 h-px bg-gray-300"></div>
+    </div>
+
+    <!-- Google -->
+    <button
+      class="w-full flex items-center justify-center gap-2 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition"
+    >
+      <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5" />
+      <span class="text-sm font-medium text-gray-700">Continuar con Google</span>
+    </button>
+
+    <!-- Registro -->
+    <p class="text-center text-sm text-gray-600">
+      ¿No tienes cuenta?
+      <a href="/register" class="text-indigo-600 hover:underline font-medium"> Regístrate </a>
+    </p>
+  </div>
+</div>
