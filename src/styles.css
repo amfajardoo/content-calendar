@@ -1,2 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0a0908;
+  --color-gunmetal: #22333b;
+  --color-white-smoke: #fafdfc;
+  --color-beaver: #d37c0d;
+  --color-walnut-brown: #793200;
+
+  --color-primary: var(--color-gunmetal);
+  --color-primary-foreground: var(--color-white-smoke);
+
+  --color-secondary: var(--color-beaver);
+  --color-secondary-foreground: var(--color-black);
+
+  --color-accent: var(--color-walnut-brown);
+  --color-accent-foreground: var(--color-white-smoke);
+
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-error:   #f44336;
+  --color-info:    #2196f3;
+
+  --color-muted: #e5e7eb;
+  --color-muted-foreground: #9baeb8;
+}
+
+.dark {
+  --color-primary: var(--color-white-smoke);
+  --color-primary-foreground: var(--color-gunmetal);
+
+  --color-secondary: var(--color-beaver);
+  --color-secondary-foreground: var(--color-gunmetal);
+
+  --color-accent: var(--color-walnut-brown);
+  --color-accent-foreground: var(--color-white-smoke);
+
+  --color-success: #81c784; 
+  --color-warning: #ffb74d;
+  --color-error:   #e57373;
+  --color-info:    #64b5f6;
+
+  --color-muted: #374151;
+  --color-muted-foreground: #9ca3af;
+}
+
+@layer base {
+  body {
+    @apply bg-white-smoke text-primary;
+  }
+
+  button:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  *:disabled {
+    @apply cursor-not-allowed;
+  }
+}

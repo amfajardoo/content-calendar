@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AppStore } from '@core/data-access/app.store';
+import { Theme } from '@core/theme/theme';
+import { AuthStore } from '../auth.store';
 
 @Component({
 	selector: 'app-signin',
@@ -9,7 +10,8 @@ import { AppStore } from '@core/data-access/app.store';
 	styleUrl: './signin.css',
 })
 export default class Signin {
-	readonly #store = inject(AppStore);
+	readonly #store = inject(AuthStore);
+	readonly #theme = inject(Theme);
 	#fb = inject(FormBuilder);
 	form = this.#fb.nonNullable.group({
 		email: this.#fb.nonNullable.control('', {
@@ -20,7 +22,13 @@ export default class Signin {
 		}),
 	});
 
+	isLoading = computed(() => this.#store.isLoading());
+
 	login() {
 		this.#store.login(this.form.getRawValue());
+	}
+
+	toggleTheme() {
+		this.#theme.toggleTheme();
 	}
 }
