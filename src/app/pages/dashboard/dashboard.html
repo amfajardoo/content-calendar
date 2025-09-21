@@ -1,4 +1,34 @@
-<app-side-nav />
-<main>
-  <router-outlet />
-</main>
+<div class="flex h-screen">
+  @if (isMobileMenuOpen()) {
+    <div
+      (click)="closeMobileMenu()"
+      class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+    ></div>
+  }
+
+  <app-side-nav
+    class="fixed inset-y-0 left-0 transform transition-transform duration-300 z-50 md:static md:flex"
+    [class.translate-x-0]="isMobileMenuOpen()"
+    [class.-translate-x-full]="!isMobileMenuOpen()"
+    [isCollapsed]="isCollapsed()"
+  ></app-side-nav>
+
+  <div class="flex-1 overflow-y-auto">
+    <header class="p-4 bg-white shadow flex justify-between items-center">
+      <button (click)="openMobileMenu()" class="p-2 rounded-lg hover:bg-gray-200 md:hidden">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <button
+        (click)="toggleCollapse()"
+        class="p-2 rounded-lg hover:bg-gray-200 hidden md:block"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </header>
+
+    <main class="p-6">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
