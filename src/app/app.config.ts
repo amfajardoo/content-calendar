@@ -7,7 +7,9 @@ import {
 import { provideRouter, withHashLocation } from '@angular/router';
 import { provideDevtoolsConfig } from '@angular-architects/ngrx-toolkit';
 import { authRedirectInterceptor } from '@core/auth/interceptors/auth-redirect-interceptor';
+import { BASE_URL } from '@core/data-access/base-url.token';
 import { globalHttpErrorInterceptor } from '@core/interceptors/global-http-error-interceptor';
+import { environment } from 'src/environments/environment';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -19,5 +21,6 @@ export const appConfig: ApplicationConfig = {
 			withInterceptors([globalHttpErrorInterceptor, authRedirectInterceptor]),
 		),
 		provideDevtoolsConfig({ name: 'Content Calendar' }),
+		{ provide: BASE_URL, useValue: environment.BASE_URL },
 	],
 };

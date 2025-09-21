@@ -12,24 +12,21 @@ export const routes: Routes = [
 	{
 		path: 'dashboard',
 		canActivate: [isLoggedInGuard],
-		canActivateChild: [isLoggedInGuard],
 		providers: [
 			provideHttpClient(
 				withInterceptors([authInterceptor]),
 				withRequestsMadeViaParent(),
 			),
 		],
-		loadComponent: () => import('@pages/dashboard/dashboard'),
+		loadChildren: () =>
+			import('@pages/dashboard/dashboard.routes').then(
+				(m) => m.DASHBOARD_ROUTES,
+			),
 	},
 	{
 		path: 'login',
 		canActivate: [redirectIfLoggedInGuard],
 		loadComponent: () => import('@core/auth/signin/signin'),
-	},
-	{
-		path: '',
-		redirectTo: 'dashboard',
-		pathMatch: 'full',
 	},
 	{
 		path: '**',
